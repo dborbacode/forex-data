@@ -1,0 +1,1 @@
+py pavios_forex.py --symbols GBPUSD,EURJPY --timeframe M5 --date 2026-08-05 --start 08:00 --end 12:00
