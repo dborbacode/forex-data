@@ -329,7 +329,7 @@ if __name__ == "__main__":
     conectar_mt5()
 
     dia = dt.date.today()
-    pares_candidatos = ["GBPUSD" , "AUDUSD"]
+    pares_candidatos = ["GBPUSD" , "AUDUSD", "EURJPY", "EURCHF", "GBPJPY", "USDJPY","GBPCAD"]
 
     print(f"\n=== Ranking de pares mais propicios - {dia} ===\n")
     ranking = analisar_pares(
@@ -353,13 +353,13 @@ if __name__ == "__main__":
     # ---- Analise de varios dias (padrao real de horario, nao ruido de 1 dia) ----
     dias = []
     d = dt.date.today()
-    while len(dias) < 30:
+    while len(dias) < 2:
         d -= dt.timedelta(days=1)
         if d.weekday() < 5:  # pula sabado(5) e domingo(6)
             dias.append(d)
 
     par_para_historico = melhor_par if not ranking.empty else "EURUSD"
-    media = analisar_varios_dias(par_para_historico, "M1", dias, 9, 13)
+    media = analisar_varios_dias(par_para_historico, "M1", dias, 1, 10)
     print(f"\n=== Media de alternancia por hora - {par_para_historico} (ultimos {len(dias)} dias uteis) ===\n")
     print(media.to_string(index=False))
 
